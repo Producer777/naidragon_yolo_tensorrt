@@ -1,0 +1,3 @@
+/home/ypq/naidragon_yolo_tensorrt/build/CMakeFiles/yolov8_trt.dir
+/home/ypq/naidragon_yolo_tensorrt/build/CMakeFiles/edit_cache.dir
+/home/ypq/naidragon_yolo_tensorrt/build/CMakeFiles/rebuild_cache.dir
