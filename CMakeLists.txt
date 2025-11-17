@@ -26,3 +26,11 @@ target_link_libraries(yolov8_trt
     nvinfer nvinfer_plugin
     ${CUDA_LIBRARIES}
 )
+
+add_executable(precision_cmpr src/precision.cpp)
+
+target_link_libraries(precision_cmpr
+    ${OpenCV_LIBS}
+    nvinfer nvinfer_plugin
+    ${CUDA_LIBRARIES}
+)

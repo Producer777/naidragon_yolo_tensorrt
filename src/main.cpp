@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <chrono>  // 放在文件顶部
 
 using namespace nvinfer1;
 
@@ -131,7 +132,12 @@ int main(int argc, char** argv) {
     }
 
     cv::Mat frame;
+    cudaStream_t stream;
+    cudaStreamCreate(&stream);
+    double total_infer_time = 0.0;
+    int frame_count = 0;
     while (cap.read(frame)) {
+        auto start = std::chrono::high_resolution_clock::now();  // 开始计时
         // ============================
         // 预处理：letterbox + RGB + 归一化
         // ============================
@@ -154,7 +160,17 @@ int main(int argc, char** argv) {
         context->setTensorAddress(inputName, inputDevice);
         context->setTensorAddress(outputName, outputDevice);
 
-        context->enqueueV3(0);
+        context->enqueueV3(stream);
+        cudaStreamSynchronize(stream);  // 等待推理完成
+        auto end = std::chrono::high_resolution_clock::now();    // 结束计时
+        double infer_time = std::chrono::duration<double, std::milli>(end - start).count();
+        total_infer_time += infer_time;
+        frame_count++;
+
+        std::cout << "Frame " << frame_count 
+                << " | Inference time: " << infer_time << " ms "
+                << " | FPS: " << 1000.0 / infer_time << std::endl;
+
 
         std::vector<float> outputData(outputSize / sizeof(float));
         cudaMemcpy(outputData.data(), outputDevice, outputSize, cudaMemcpyDeviceToHost);
@@ -174,6 +190,11 @@ int main(int argc, char** argv) {
             boxes.push_back(b);
         }
 
+        for(int i=0;i<10;i++)
+            std::cout << outputData[i] << " ";
+        std::cout << std::endl;
+
+
         auto finalBoxes = nms(boxes, 0.5f);
 
         for (const auto& b : finalBoxes) {
@@ -189,7 +210,11 @@ int main(int argc, char** argv) {
         cv::imshow("YOLOv8 TensorRT 10", frame);
         if (cv::waitKey(1) == 'q') break;
     }
+    std::cout << "======================================" << std::endl;
+    std::cout << "Average Inference Time: " << total_infer_time / frame_count << " ms" << std::endl;
+    std::cout << "Average FPS: " << 1000.0 / (total_infer_time / frame_count) << std::endl;
 
+    cudaStreamDestroy(stream);
     cudaFree(inputDevice);
     cudaFree(outputDevice);
     delete context;

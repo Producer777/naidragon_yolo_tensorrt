@@ -64,6 +64,7 @@ CMAKE_BINARY_DIR = /home/ypq/naidragon_yolo_tensorrt/build
 
 # The main recursive "all" target.
 all: CMakeFiles/yolov8_trt.dir/all
+all: CMakeFiles/precision_cmpr.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -72,6 +73,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/yolov8_trt.dir/clean
+clean: CMakeFiles/precision_cmpr.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -81,7 +83,7 @@ clean: CMakeFiles/yolov8_trt.dir/clean
 CMakeFiles/yolov8_trt.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/yolov8_trt.dir/build.make CMakeFiles/yolov8_trt.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/yolov8_trt.dir/build.make CMakeFiles/yolov8_trt.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ypq/naidragon_yolo_tensorrt/build/CMakeFiles --progress-num=1,2 "Built target yolov8_trt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ypq/naidragon_yolo_tensorrt/build/CMakeFiles --progress-num=3,4 "Built target yolov8_trt"
 .PHONY : CMakeFiles/yolov8_trt.dir/all
 
 # Build rule for subdir invocation for target.
@@ -99,6 +101,32 @@ yolov8_trt: CMakeFiles/yolov8_trt.dir/rule
 CMakeFiles/yolov8_trt.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/yolov8_trt.dir/build.make CMakeFiles/yolov8_trt.dir/clean
 .PHONY : CMakeFiles/yolov8_trt.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/precision_cmpr.dir
+
+# All Build rule for target.
+CMakeFiles/precision_cmpr.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/precision_cmpr.dir/build.make CMakeFiles/precision_cmpr.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/precision_cmpr.dir/build.make CMakeFiles/precision_cmpr.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ypq/naidragon_yolo_tensorrt/build/CMakeFiles --progress-num=1,2 "Built target precision_cmpr"
+.PHONY : CMakeFiles/precision_cmpr.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/precision_cmpr.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ypq/naidragon_yolo_tensorrt/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/precision_cmpr.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ypq/naidragon_yolo_tensorrt/build/CMakeFiles 0
+.PHONY : CMakeFiles/precision_cmpr.dir/rule
+
+# Convenience name for target.
+precision_cmpr: CMakeFiles/precision_cmpr.dir/rule
+.PHONY : precision_cmpr
+
+# clean rule for target.
+CMakeFiles/precision_cmpr.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/precision_cmpr.dir/build.make CMakeFiles/precision_cmpr.dir/clean
+.PHONY : CMakeFiles/precision_cmpr.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

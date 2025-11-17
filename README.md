@@ -7,7 +7,7 @@ tensorrt:10.13.0
 
 利用
 /usr/src/tensorrt/bin/trtexec \
---onnx=../best.onnx \
+--onnx=best.onnx \
 --saveEngine=best.engine \
 --minShapes=images:1x3x640x640 \
 --optShapes=images:1x3x640x640 \

@@ -129,6 +129,19 @@ yolov8_trt/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/yolov8_trt.dir/build.make CMakeFiles/yolov8_trt.dir/build
 .PHONY : yolov8_trt/fast
 
+#=============================================================================
+# Target rules for targets named precision_cmpr
+
+# Build rule for target.
+precision_cmpr: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 precision_cmpr
+.PHONY : precision_cmpr
+
+# fast build rule for target.
+precision_cmpr/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/precision_cmpr.dir/build.make CMakeFiles/precision_cmpr.dir/build
+.PHONY : precision_cmpr/fast
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -153,6 +166,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/yolov8_trt.dir/build.make CMakeFiles/yolov8_trt.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/precision.o: src/precision.cpp.o
+.PHONY : src/precision.o
+
+# target to build an object file
+src/precision.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/precision_cmpr.dir/build.make CMakeFiles/precision_cmpr.dir/src/precision.cpp.o
+.PHONY : src/precision.cpp.o
+
+src/precision.i: src/precision.cpp.i
+.PHONY : src/precision.i
+
+# target to preprocess a source file
+src/precision.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/precision_cmpr.dir/build.make CMakeFiles/precision_cmpr.dir/src/precision.cpp.i
+.PHONY : src/precision.cpp.i
+
+src/precision.s: src/precision.cpp.s
+.PHONY : src/precision.s
+
+# target to generate assembly for a file
+src/precision.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/precision_cmpr.dir/build.make CMakeFiles/precision_cmpr.dir/src/precision.cpp.s
+.PHONY : src/precision.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -161,10 +198,14 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... precision_cmpr"
 	@echo "... yolov8_trt"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/precision.o"
+	@echo "... src/precision.i"
+	@echo "... src/precision.s"
 .PHONY : help
 
 
